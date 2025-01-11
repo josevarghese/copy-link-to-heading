@@ -1,0 +1,27 @@
+/* Hide the copy icon by default */
+.clth-copy-icon {
+    display: none;
+    cursor: pointer;
+    margin-left: 8px;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.2s;
+}
+
+/* Show the copy icon only on hover */
+h1:hover .clth-copy-icon,
+h2:hover .clth-copy-icon,
+h3:hover .clth-copy-icon,
+h4:hover .clth-copy-icon,
+h5:hover .clth-copy-icon,
+h6:hover .clth-copy-icon {
+    display: inline-block;
+}
+
+.clth-copy-icon:hover {
+    opacity: 1;
+}
