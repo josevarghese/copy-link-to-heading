@@ -15,12 +15,6 @@
      exit; // Exit if accessed directly
  }
  
- // Load plugin text domain for translations
- function clth_load_textdomain() {
-     load_plugin_textdomain('copy-link-to-heading', false, dirname(plugin_basename(__FILE__)) . '/languages');
- }
- add_action('plugins_loaded', 'clth_load_textdomain');
- 
  // Enqueue CSS and JS
  function clth_enqueue_assets() {
      if (!clth_should_load()) {
@@ -164,14 +158,14 @@
      </div>
      <?php
  }
-
+ 
  // Add settings link on plugins page
-function clth_add_plugin_action_links($links) {
-    $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
-    array_unshift($links, $settings_link);
-    return $links;
-}
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_action_links');
+ function clth_add_plugin_action_links($links) {
+     $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
+     array_unshift($links, $settings_link);
+     return $links;
+ }
+ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_action_links');
  
  // Register settings
  function clth_register_settings() {
@@ -222,4 +216,4 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_
      delete_option('clth_enable_for_pages');
      delete_option('clth_enable_for_cpt');
      delete_option('clth_excluded_ids');
- }
+ } 
