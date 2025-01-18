@@ -1,19 +1,17 @@
-/* Hide the copy icon by default */
+/* Default styles for the copy icon */
 .clth-copy-icon {
     display: none;
-    cursor: pointer;
-    margin-left: 8px;
-    vertical-align: middle;
     width: 16px;
     height: 16px;
-    opacity: 0.7;
+    margin-left: 8px;
+    cursor: pointer;
     background-size: contain;
     background-repeat: no-repeat;
+    vertical-align: middle;
     transition: opacity 0.2s;
 }
 
-/* Show the copy icon only on hover */
-h1:hover .clth-copy-icon,
+/* Show icon on hover for desktop */
 h2:hover .clth-copy-icon,
 h3:hover .clth-copy-icon,
 h4:hover .clth-copy-icon,
@@ -22,6 +20,14 @@ h6:hover .clth-copy-icon {
     display: inline-block;
 }
 
+/* Ensure the icon aligns properly when shown */
 .clth-copy-icon:hover {
     opacity: 1;
+}
+
+/* Mobile-specific styles when "Always Show Icon on Mobile" is enabled */
+@media (max-width: 768px) {
+    body.clth-show-icon-mobile .clth-copy-icon {
+        display: inline-block !important;
+    }
 }
