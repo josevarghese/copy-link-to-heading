@@ -4,11 +4,11 @@ Tags: headings, copy link, content navigation, deep linking, anchor links
 Requires at least: 5.0
 Tested up to: 6.7.1
 Requires PHP: 7.0
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds a link icon to headings for easy bookmarking, sharing, and navigation within the content.
+Adds a copy link icon to headings for easy copying, bookmarking, sharing, and navigation within the content.
 
 == Description ==
 
@@ -29,15 +29,24 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 - Supports posts, pages, and custom post types.
 - Customizable heading levels to display the link icon.
 - Compatible with WooCommerce product pages and other custom post types.
+- Generates anchor links, section links, and deep links for improved navigation.
 - Simple settings page for quick configuration.
 - Lightweight and optimized for performance.
+- Option to always show the copy link to heading icon for the mobile devices
+
+== How Links Are Generated ==
+
+- The plugin automatically generates anchor links for headings on the frontend when the page loads. No changes are required in the WordPress editor or post content.
+- If a heading already has an anchor link, the plugin uses the existing anchor link URL for the "copy link" functionality.
+- Even if the heading text is modified later, the plugin dynamically regenerates the anchor link based on the updated heading text on the frontend. This ensures any changes made in the editor will not cause issues with link functionality.  
+- This seamless approach ensures the plugin adapts to changes in content while maintaining reliable and accurate linking.
 
 **Use Cases:**
 
-- **Copy links to specific headings** to share with others or reference in emails or social media.
+- **Copy links to specific headings** using a heading URL generator to share with others or reference in emails or social media.
 - **Bookmark sections of long articles or documentation** for easy navigation later.
 - **Enable deep linking** to improve user experience on content-heavy websites.
-- Help readers and collaborators **quickly access key sections** of your content.
+- Help readers and collaborators quickly access key sections of your content with a bookmark link generator.
 
 Whether you're managing a blog, a technical documentation site, or a WooCommerce store, this plugin ensures your audience can easily navigate and share content.
 
@@ -66,6 +75,15 @@ Absolutely! The plugin is compatible with any public custom post type, including
 = Will the link icons affect my website’s performance? =
 
 No, the plugin is lightweight and optimized for performance. It enqueues only the necessary scripts and styles on pages where it's needed.
+
+= I want some features and would like to be contribute to this plugin? =
+We welcome contributions! Feel free to create a pull request or submit a feature request on your mind. For bug reports and feature requests, please visit the issues section.
+
+= How can I contribute to this awesome plugin? =
+You can contribute to this Web Share plugin via our [GitHub repository](https://github.com/josevarghese/copy-link-to-heading/)
+
+= How do I report bugs and new feature suggestions? =
+You can report the bugs and request new features you need to see at our [GitHub repository page](https://github.com/josevarghese/copy-link-to-heading/issues) 
 
 == Screenshots ==
 
