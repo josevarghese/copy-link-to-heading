@@ -159,7 +159,7 @@ function clth_render_settings_page() {
                     <td>
                         <input type="checkbox" name="clth_show_icon_on_mobile" value="1" <?php checked(get_option('clth_show_icon_on_mobile', true), 1); ?> />
                         <label for="clth_show_icon_on_mobile"><?php esc_html_e('Always show the icon on mobile devices without hovering.', 'copy-link-to-heading'); ?></label>
-                        <p class="description"><?php esc_html_e('Recommended for better usability on touchscreens, else the icon would only be shown when the heading is clicked on mobile', 'copy-link-to-heading'); ?></p>
+                        <p class="description"><?php esc_html_e('This is recommended for better usability on touchscreens; otherwise, the icon will only appear when the heading is tapped on mobile device.', 'copy-link-to-heading'); ?></p>
                     </td>
                 </tr>
             </table>
