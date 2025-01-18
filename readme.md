@@ -12,7 +12,7 @@ This WordPress plugin adds a convenient feature to your site by enabling users t
 
 ## Installation
 
-1. Download the plugin zip file from [WordPress.org](https://wordpress.org/plugins/copy-link-to-heading/) or this repository.
+1. Download the plugin zip file from [WordPress.org](https://wordpress.org/plugins/copy-link-to-heading/).
 2. Go to your WordPress admin dashboard.
 3. Navigate to **Plugins > Add New** and click on **Upload Plugin**.
 4. Upload the downloaded zip file and click **Install Now**.
