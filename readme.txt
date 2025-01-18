@@ -87,9 +87,8 @@ You can report the bugs and request new features you need to see at our [GitHub 
 
 == Screenshots ==
 
-1. **Settings Page:** Configure which heading levels and content types should display the link icon.
-2. **Frontend Example:** A link icon is displayed next to a heading.
-3. **Copy and Share:** Easily copy the link to the clipboard and share it.
+1. **Frontend Example:** A link icon is displayed next to a heading.
+2. **Settings Page:** Configure which heading levels and content types should display the link icon.
 
 == Changelog ==
 
