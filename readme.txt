@@ -40,6 +40,8 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 - If a heading already has an anchor link, the plugin uses the existing anchor link URL for the "copy link" functionality.
 Even if the heading text is modified later, the plugin dynamically regenerates the anchor link based on the updated heading text on the front end. This ensures that any changes made in the editor will not cause issues with link functionality.  
 - This seamless approach ensures the plugin adapts to changes in content while maintaining reliable and accurate linking.
+- So just install the "Copy Link to Heading" plugin on your WordPres website and configure the settings based on your preference to decide on which all content types and headings levels you want to show the copy link to the heading icon. 
+- Everything will be done in the frontend out of box by our plugin without any hussle.
 
 **Use Cases:**
 
