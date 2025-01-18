@@ -230,10 +230,17 @@ function clth_sanitize_ids($input) {
     return array_filter(array_map('absint', (array)$input));
 }
 
-// Admin footer text
+// Admin footer text only on the settings page
 function clth_admin_footer_text($text) {
-    $custom_text = __('Thank you for using the Copy Link to Heading plugin :) If you like it, please leave <a href="https://wordpress.org/plugins/copy-link-to-heading/?rate=5#new-post" target="_blank">a ★★★★★ rating</a> to support us on WordPress.org to help us spread the word to the community. If you love to donate, you can provide it via <a href="https://superwebshare.com/donate" target="_blank">here</a>. Thanks a lot!', 'copy-link-to-heading');
-    return $custom_text;
+    global $pagenow;
+
+    // Check if we're on the plugin's settings page
+    if ($pagenow === 'options-general.php' && isset($_GET['page']) && $_GET['page'] === 'clth-settings') {
+        $custom_text = __('Thank you for using the Copy Link to Heading plugin :) If you like it, please leave <a href="https://wordpress.org/support/plugin/copy-link-to-heading/reviews/?filter=5#new-post" target="_blank">a ★★★★★ rating</a> to support us on WordPress.org to help us spread the word to the community. If you love to donate, you can provide it via <a href="https://superwebshare.com/donate" target="_blank">here</a>. Thanks a lot!', 'copy-link-to-heading');
+        return $custom_text;
+    }
+
+    return $text; // Default footer text for other pages as before
 }
 add_filter('admin_footer_text', 'clth_admin_footer_text');
 
