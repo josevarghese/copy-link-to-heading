@@ -169,6 +169,23 @@ function clth_render_settings_page() {
     <?php
 }
 
+// Add admin notice on activation
+function clth_activation_notice() {
+    if (get_transient('clth_show_activation_notice')) {
+        echo '<div class="notice notice-success is-dismissible">';
+        echo '<p>' . esc_html__('Thank you for installing Copy Link to Heading.', 'copy-link-to-heading') . ' <a href="' . esc_url(admin_url('options-general.php?page=clth-settings')) . '">' . esc_html__('Customize your settings here', 'copy-link-to-heading') . '</a>.</p>';
+        echo '</div>';
+        delete_transient('clth_show_activation_notice');
+    }
+}
+add_action('admin_notices', 'clth_activation_notice');
+
+// Set transient on plugin activation
+function clth_set_activation_notice() {
+    set_transient('clth_show_activation_notice', true, 30);
+}
+register_activation_hook(__FILE__, 'clth_set_activation_notice');
+
 // Add settings link on plugins page
 function clth_add_plugin_action_links($links) {
     $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
@@ -212,6 +229,13 @@ function clth_sanitize_ids($input) {
     }
     return array_filter(array_map('absint', (array)$input));
 }
+
+// Admin footer text
+function clth_admin_footer_text($text) {
+    $custom_text = __('Thank you for using the Copy Link to Heading plugin :) If you like it, please leave <a href="https://wordpress.org/plugins/copy-link-to-heading/?rate=5#new-post" target="_blank">a ★★★★★ rating</a> to support us on WordPress.org to help us spread the word to the community. If you love to donate, you can provide it via <a href="https://superwebshare.com/donate" target="_blank">here</a>. Thanks a lot!', 'copy-link-to-heading');
+    return $custom_text;
+}
+add_filter('admin_footer_text', 'clth_admin_footer_text');
 
 // Get plugin version
 function clth_get_plugin_version() {
