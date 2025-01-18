@@ -25,20 +25,20 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 
 **Key Features:**
 
-- Adds a link icon next to the selected heading levels (H2, H3, etc.).
+- Add a link icon next to the selected heading levels (H2, H3, etc.).
 - Supports posts, pages, and custom post types.
 - Customizable heading levels to display the link icon.
 - Compatible with WooCommerce product pages and other custom post types.
 - Generates anchor links, section links, and deep links for improved navigation.
 - Simple settings page for quick configuration.
 - Lightweight and optimized for performance.
-- Option to always show the copy link to heading icon for the mobile devices
+- Option to always show the copy link to the heading icon for mobile devices
 
-== How Links Are Generated ==
+== How Links are Generated ==
 
 - The plugin automatically generates anchor links for headings on the frontend when the page loads. No changes are required in the WordPress editor or post content.
 - If a heading already has an anchor link, the plugin uses the existing anchor link URL for the "copy link" functionality.
-- Even if the heading text is modified later, the plugin dynamically regenerates the anchor link based on the updated heading text on the frontend. This ensures any changes made in the editor will not cause issues with link functionality.  
+Even if the heading text is modified later, the plugin dynamically regenerates the anchor link based on the updated heading text on the front end. This ensures that any changes made in the editor will not cause issues with link functionality.  
 - This seamless approach ensures the plugin adapts to changes in content while maintaining reliable and accurate linking.
 
 **Use Cases:**
@@ -66,7 +66,7 @@ Visit "Settings" -> "Copy Link to Heading" in your WordPress dashboard. You can 
 
 = Can I customize the heading levels that display the icon? =
 
-Yes! You can choose which heading levels (H1 to H6) to include from the settings page. By default, the plugin excludes H1, as it is usually reserved for the main title.
+Yes! You can choose which heading levels (H1 to H6) to include from the settings page. By default, the plugin excludes H1, usually reserved for the main title. The page title won’t be shown with a link as the link is same as the page.
 
 = Does the plugin support custom post types, such as WooCommerce products? =
 
@@ -76,7 +76,7 @@ Absolutely! The plugin is compatible with any public custom post type, including
 
 No, the plugin is lightweight and optimized for performance. It enqueues only the necessary scripts and styles on pages where it's needed.
 
-= I want some features and would like to be contribute to this plugin? =
+= I want some features and would like to contribute to this plugin? =
 We welcome contributions! Feel free to create a pull request or submit a feature request on your mind. For bug reports and feature requests, please visit the issues section.
 
 = How can I contribute to this awesome plugin? =
@@ -88,12 +88,18 @@ You can report the bugs and request new features you need to see at our [GitHub 
 == Screenshots ==
 
 1. **Settings Page:** Configure which heading levels and content types should display the link icon.
-2. **Frontend Example:** A link icon displayed next to a heading.
+2. **Frontend Example:** A link icon is displayed next to a heading.
 3. **Copy and Share:** Easily copy the link to the clipboard and share it.
 
 == Changelog ==
 
+= 1.1 =
+** New Feature:** 
+- A new option was added to the settings page to control the visibility of the copy link icon on mobile devices.
+- When enabled (default), the icon is always visible on mobile for better usability on touchscreens.
+- When disabled, the icon behaves like on desktops, appearing only on hover.
+
 = 1.0 =
 * Initial release: Adds link icons next to headings for easy sharing and navigation.
-* Added: Ability to customize heading levels for displaying the link icon.
+* Added: Ability to customize heading levels to display the link icon.
 * Added: Compatibility with WooCommerce and other custom post types.
