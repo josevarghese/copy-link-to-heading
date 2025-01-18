@@ -95,10 +95,11 @@ You can report the bugs and request new features you need to see at our [GitHub 
 == Changelog ==
 
 = 1.1 =
-** New Feature:** 
+New Feature:
 - A new option was added to the settings page to control the visibility of the copy link icon on mobile devices.
 - When enabled (default), the icon is always visible on mobile for better usability on touchscreens.
 - When disabled, the icon behaves like on desktops, appearing only on hover.
+- Improvements to the settings page
 
 = 1.0 =
 * Initial release: Adds link icons next to headings for easy sharing and navigation.
