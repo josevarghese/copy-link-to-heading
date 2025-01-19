@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const headings = clthData.headings;
     const iconUrl = clthData.iconUrl;
     const showIconOnMobile = clthData.showIconOnMobile;
+    const enableTooltip = clthData.enableTooltip === '1'; // Check if tooltip is enabled
     const contentSelector = '.entry-content, .post-content, .page-content';
 
     // Add or remove class on the body based on the mobile icon setting
@@ -26,12 +27,35 @@ document.addEventListener('DOMContentLoaded', function () {
                     const icon = document.createElement('span');
                     icon.classList.add('clth-copy-icon');
                     icon.style.backgroundImage = `url('${iconUrl}')`;
+
+                    if (enableTooltip) {
+                        // Create tooltip element
+                        const tooltip = document.createElement('span');
+                        tooltip.classList.add('clth-tooltip');
+                        tooltip.textContent = 'Copy Link to Heading';
+
+                        // Append tooltip to the icon
+                        icon.appendChild(tooltip);
+                    }
+
                     heading.appendChild(icon);
 
                     icon.addEventListener('click', function () {
                         const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
                         navigator.clipboard.writeText(url).then(() => {
-                            alert(`Copied link: ${url}`);
+                            if (enableTooltip) {
+                                // Change tooltip text to "Copied"
+                                const tooltip = icon.querySelector('.clth-tooltip');
+                                tooltip.textContent = 'Copied';
+
+                                // Revert back to the original text after 2 seconds
+                                setTimeout(() => {
+                                    tooltip.textContent = 'Copy Link to Heading';
+                                }, 2000);
+                            } else {
+                                // Show alert if tooltip is disabled
+                                alert(`Copied link: ${url}`);
+                            }
                         });
                     });
                 }

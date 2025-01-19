@@ -31,3 +31,47 @@ h6:hover .clth-copy-icon {
         display: inline-block !important;
     }
 }
+
+/* Tooltip container */
+.clth-copy-icon {
+    position: relative;
+}
+
+/* Tooltip text */
+.clth-tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 12px; /* Compact font size */
+    padding: 3px 6px; /* Adjust padding for smaller size */
+    border-radius: 3px; /* Subtle rounding */
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 150%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Tooltip arrow */
+.clth-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Position arrow below the tooltip */
+    left: 50%;
+    margin-left: -5px; /* Center the arrow */
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent; /* Arrow pointing down */
+}
+
+/* Show the tooltip on hover */
+.clth-copy-icon:hover .clth-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
