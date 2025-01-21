@@ -14,7 +14,7 @@ Adds a copy link icon to headings for easy copying, bookmarking, sharing, and na
 
 Have you ever wanted to quickly copy a link to a specific heading section of content for bookmarking, sharing with friends or colleagues, or jumping straight to a heading without scrolling through the entire page? "Copy Link to Heading" makes it effortless!
 
-This plugin automatically adds a small, unobtrusive link icon next to the headings in your posts, pages, or custom post types. With just one click, users can copy a direct link to the section for:
+The Copy Link to Heading plugin automatically adds a small, unobtrusive link icon next to the headings in your posts, pages, or custom post types. With just one click, users can copy a direct link to the section for:
 
 - Bookmarking the heading so they can continue reading later without scrolling.
 - Sharing specific sections of content with friends, colleagues, or on social media.
@@ -33,6 +33,7 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 - Simple settings page for quick configuration.
 - Lightweight and optimized for performance.
 - Option to always show the copy link to the heading icon for mobile devices
+- Option to add tooltip for the link icon or to choose the browser alert for copying link of the heading
 
 == How Links are Generated ==
 
