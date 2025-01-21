@@ -79,14 +79,17 @@ function clth_should_load() {
     return false;
 }
 
-// Add settings and donate links on plugins page
-function clth_add_plugin_action_links($links) {
-    $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
-    $donate_link = '<a href="https://superwebshare.com/donate" target="_blank">' . esc_html__('Donate', 'copy-link-to-heading') . '</a>';
-    array_unshift($links, $settings_link, $donate_link);
-    return $links;
+// Add settings page
+function clth_add_settings_page() {
+    add_options_page(
+        esc_html__('Copy Link to Heading Settings', 'copy-link-to-heading'),
+        esc_html__('Copy Link to Heading', 'copy-link-to-heading'),
+        'manage_options',
+        'clth-settings',
+        'clth_render_settings_page'
+    );
 }
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_action_links');
+add_action('admin_menu', 'clth_add_settings_page');
 
 // Render settings page
 function clth_render_settings_page() {
@@ -192,10 +195,11 @@ function clth_set_activation_notice() {
 }
 register_activation_hook(__FILE__, 'clth_set_activation_notice');
 
-// Add settings link on plugins page
+// Add settings and donate links on plugins page
 function clth_add_plugin_action_links($links) {
     $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
-    array_unshift($links, $settings_link);
+    $donate_link = '<a href="https://superwebshare.com/donate" target="_blank">' . esc_html__('Donate', 'copy-link-to-heading') . '</a>';
+    array_unshift($links, $settings_link, $donate_link);
     return $links;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_action_links');
