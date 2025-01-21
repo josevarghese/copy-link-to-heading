@@ -4,7 +4,7 @@ Tags: headings, copy link, content navigation, deep linking, anchor links
 Requires at least: 5.0
 Tested up to: 6.7.1
 Requires PHP: 7.0
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,10 @@ No, the plugin is lightweight and optimized for performance. It enqueues only th
 = I want some features and would like to contribute to this plugin? =
 We welcome contributions! Feel free to create a pull request or submit a feature request on your mind. For bug reports and feature requests, please visit the issues section.
 
+= The plugin is not working on my website, what will I do? =
+First, ensure that your website has SSL (https://). If the issue persists, perform a conflict check. If the problem still remains, [please open a new topic clearly explaining the issue and how we can improve it](https://wordpress.org/support/plugin/copy-link-to-heading/#new-post).
+As this is a small plugin, your active contributions in reporting bugs and suggesting features are essential to make it better.
+
 = How can I contribute to this awesome plugin? =
 You can contribute to this Web Share plugin via our [GitHub repository](https://github.com/josevarghese/copy-link-to-heading/)
 
@@ -93,6 +97,10 @@ You can report the bugs and request new features you need to see at our [GitHub 
 2. **Settings Page:** Configure which heading levels and content types should display the link icon.
 
 == Changelog ==
+
+= 1.2 =
+New Feature:
+- Added with a new option in Settings page to show the tooltip for the icoon to copy and also to switch to the browser alert option.
 
 = 1.1 =
 New Feature:
