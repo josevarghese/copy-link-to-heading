@@ -100,6 +100,7 @@ You can report the bugs and request new features you need to see at our [GitHub 
 == Changelog ==
 
 = 1.2 =
+Released on 22 January 2025
 New Feature:
 - Added with a new option in Settings page to show the tooltip for the icoon to copy and also to switch to the browser alert option.
 - By default, the browser alert will be replaced with a tooltip to help users understand the feature more effectively. However you can switch this off within the settings page.
