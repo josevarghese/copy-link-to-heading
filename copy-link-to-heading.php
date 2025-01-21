@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Copy Link to Heading
  * Description: Adds a copy link icon to headings to copying easily, bookmarking, sharing, and navigation within the content.
- * Version: 1.2
+ * Version: 1.3
  * Author: Jose Varghese
  * Requires at least: 5.0
  * Requires PHP: 7.0
@@ -79,17 +79,14 @@ function clth_should_load() {
     return false;
 }
 
-// Add settings page
-function clth_add_settings_page() {
-    add_options_page(
-        esc_html__('Copy Link to Heading Settings', 'copy-link-to-heading'),
-        esc_html__('Copy Link to Heading', 'copy-link-to-heading'),
-        'manage_options',
-        'clth-settings',
-        'clth_render_settings_page'
-    );
+// Add settings and donate links on plugins page
+function clth_add_plugin_action_links($links) {
+    $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
+    $donate_link = '<a href="https://superwebshare.com/donate" target="_blank">' . esc_html__('Donate', 'copy-link-to-heading') . '</a>';
+    array_unshift($links, $settings_link, $donate_link);
+    return $links;
 }
-add_action('admin_menu', 'clth_add_settings_page');
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_action_links');
 
 // Render settings page
 function clth_render_settings_page() {
