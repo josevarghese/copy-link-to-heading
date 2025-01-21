@@ -35,7 +35,7 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 - Option to always show the copy link to the heading icon for mobile devices
 - Option to add tooltip for the link icon or to choose the browser alert for copying link of the heading
 
-== How Links are Generated ==
+== How Links are Generated? ==
 
 - The plugin automatically generates anchor links for headings on the frontend when the page loads. No changes are required in the WordPress editor or post content.
 - If a heading already has an anchor link, the plugin uses the existing anchor link URL for the "copy link" functionality.
