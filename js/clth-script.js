@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Create tooltip element
                         const tooltip = document.createElement('span');
                         tooltip.classList.add('clth-tooltip');
-                        tooltip.textContent = 'Copy Link to Heading';
+                        tooltip.textContent = 'Copy link to heading';
 
                         // Append tooltip to the icon
                         icon.appendChild(tooltip);
