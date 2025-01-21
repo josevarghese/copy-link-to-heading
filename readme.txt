@@ -83,7 +83,7 @@ No, the plugin is lightweight and optimized for performance. It enqueues only th
 We welcome contributions! Feel free to create a pull request or submit a feature request on your mind. For bug reports and feature requests, please visit the issues section.
 
 = The plugin is not working on my website, what will I do? =
-First, ensure that your website has SSL (https://). If the issue persists, perform a conflict check. If the problem still remains, [please open a new topic clearly explaining the issue and how we can improve it](https://wordpress.org/support/plugin/copy-link-to-heading/#new-post).
+First, ensure that your website has SSL (https://) and you have cleared the cachings. If the issue persists when checking via an iconginto window after clearing the cache, perform a conflict check. If the problem still remains, [please open a new topic clearly explaining the issue and how we can improve it](https://wordpress.org/support/plugin/copy-link-to-heading/#new-post).
 As this is a small plugin, your active contributions in reporting bugs and suggesting features are essential to make it better.
 
 = How can I contribute to this awesome plugin? =
@@ -102,6 +102,7 @@ You can report the bugs and request new features you need to see at our [GitHub 
 = 1.2 =
 New Feature:
 - Added with a new option in Settings page to show the tooltip for the icoon to copy and also to switch to the browser alert option.
+- By default, the browser alert will be replaced with a tooltip to help users understand the feature more effectively. However you can switch this off within the settings page.
 
 = 1.1 =
 New Feature:
