@@ -102,8 +102,9 @@ You can report the bugs and request new features you need to see at our [GitHub 
 = 1.3 =
 Released on 26 January 2025
 New features:
-- Added settings to change the text based on your preference for the tooltip.
-- Improved Settings page.
+Added settings to customize the tooltip text based on your preferences.
+By default, the copy link feature is now enabled for posts, while pages are unselected. You can enable it for pages based on your preference.
+Enhanced the settings page for a better user experience.
 
 = 1.2 =
 Released on 22 January 2025
