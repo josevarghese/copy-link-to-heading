@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }, 2000);
                             } else {
                                 // Show alert if tooltip is disabled
-                                alert(`Copied link: ${url}`);
+                                alert(`${clthData.copiedText || 'Copied'}: ${url}`);
                             }
                         });
                     });
