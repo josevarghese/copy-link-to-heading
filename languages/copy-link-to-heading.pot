@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Copy Link to Heading\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-04 18:55+0000\n"
+"POT-Creation-Date: 2025-01-25 21:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,45 +17,119 @@ msgstr ""
 "X-Domain: copy-link-to-heading"
 
 #. Description of the plugin
-msgid "Adds a copy link icon next to section headings."
+msgid ""
+"Adds a copy link icon to headings for easy copying, bookmarking, sharing, "
+"and navigation within the content."
 msgstr ""
 
-#: copy-link-to-heading.php:111
+#: copy-link-to-heading.php:161
+msgid "Always Show Icon on Mobile:"
+msgstr ""
+
+#: copy-link-to-heading.php:164
+msgid "Always show the icon on mobile devices without hovering."
+msgstr ""
+
+#: copy-link-to-heading.php:110
 msgid ""
 "By default, no icon is shown for H1 as it is typically used for the title of "
 "the page or post."
 msgstr ""
 
 #. Name of the plugin
-#: copy-link-to-heading.php:89
+#: copy-link-to-heading.php:88
 msgid "Copy Link to Heading"
 msgstr ""
 
-#: copy-link-to-heading.php:88 copy-link-to-heading.php:101
+#: copy-link-to-heading.php:87 copy-link-to-heading.php:100
 msgid "Copy Link to Heading Settings"
 msgstr ""
 
-#: copy-link-to-heading.php:158
+#: copy-link-to-heading.php:213
+msgid "Customize your settings here"
+msgstr ""
+
+#: copy-link-to-heading.php:229
+msgid "Donate"
+msgstr ""
+
+#: copy-link-to-heading.php:169
+msgid "Enable Tooltip:"
+msgstr ""
+
+#: copy-link-to-heading.php:172
+msgid "Enable tooltips when hovering over the copy icon."
+msgstr ""
+
+#: copy-link-to-heading.php:157
 msgid ""
 "Enter the IDs of pages to exclude, separated by commas. Example: 12, 34, 56"
 msgstr ""
 
-#: copy-link-to-heading.php:155
+#: copy-link-to-heading.php:154
 msgid "Exclude Pages (IDs):"
 msgstr ""
 
-#: copy-link-to-heading.php:134
-msgid "Pages"
+#: copy-link-to-heading.php:173
+msgid "If disabled, an alert will show instead of the tooltip."
+msgstr ""
+
+#. Author of the plugin
+msgid "Jose Varghese"
 msgstr ""
 
 #: copy-link-to-heading.php:133
+msgid "Pages"
+msgstr ""
+
+#: copy-link-to-heading.php:132
 msgid "Posts"
 msgstr ""
 
-#: copy-link-to-heading.php:109
+#: copy-link-to-heading.php:108
 msgid "Select heading levels to show link icon:"
 msgstr ""
 
-#: copy-link-to-heading.php:131
+#: copy-link-to-heading.php:228
+msgid "Settings"
+msgstr ""
+
+#: copy-link-to-heading.php:130
 msgid "Show link icons on the following content types:"
+msgstr ""
+
+#: copy-link-to-heading.php:184
+msgid "Text for \"Copied\":"
+msgstr ""
+
+#: copy-link-to-heading.php:177
+msgid "Text for \"Copy Link to Heading\":"
+msgstr ""
+
+#: copy-link-to-heading.php:180
+msgid "Text to display when hovering over the icon before the link is copied."
+msgstr ""
+
+#: copy-link-to-heading.php:187
+msgid "Text to display when the link is copied."
+msgstr ""
+
+#: copy-link-to-heading.php:213
+msgid "Thank you for installing Copy Link to Heading."
+msgstr ""
+
+#: copy-link-to-heading.php:280
+msgid ""
+"Thank you for using the Copy Link to Heading plugin :) If you like it, "
+"please leave <a href=\"https://wordpress.org/support/plugin/copy-link-to-"
+"heading/reviews/?filter=5#new-post\" target=\"_blank\">a ★★★★★ rating</a> to "
+"support us on WordPress.org to help us spread the word to the community. If "
+"you love to donate, you can provide it via <a href=\"https://superwebshare."
+"com/donate\" target=\"_blank\">here</a>. Thanks a lot!"
+msgstr ""
+
+#: copy-link-to-heading.php:165
+msgid ""
+"This is recommended for better usability on touchscreens; otherwise, the "
+"icon will only appear when the heading is tapped on mobile device."
 msgstr ""
