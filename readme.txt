@@ -4,7 +4,7 @@ Tags: headings, copy link, content navigation, deep linking, anchor links
 Requires at least: 5.0
 Tested up to: 6.7.1
 Requires PHP: 7.0
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,14 +99,21 @@ You can report the bugs and request new features you need to see at our [GitHub 
 
 == Changelog ==
 
+= 1.3 =
+Released on 26 January 2025
+New features:
+Added settings to customize the tooltip text based on your preferences.
+By default, the copy link feature is now enabled for posts, while pages are unselected. You can enable it for pages based on your preference.
+Enhanced the settings page for a better user experience.
+
 = 1.2 =
 Released on 22 January 2025
-New Feature:
+New features:
 - Added with a new option in Settings page to show the tooltip for the icoon to copy and also to switch to the browser alert option.
 - By default, the browser alert will be replaced with a tooltip to help users understand the feature more effectively. However you can switch this off within the settings page.
 
 = 1.1 =
-New Feature:
+New features:
 - A new option was added to the settings page to control the visibility of the copy link icon on mobile devices.
 - When enabled (default), the icon is always visible on mobile for better usability on touchscreens.
 - When disabled, the icon behaves like on desktops, appearing only on hover.

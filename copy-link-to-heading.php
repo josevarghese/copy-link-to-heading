@@ -1,8 +1,8 @@
 <?php 
 /**
  * Plugin Name: Copy Link to Heading
- * Description: Adds a copy link icon to headings to copying easily, bookmarking, sharing, and navigation within the content.
- * Version: 1.2
+ * Description: Adds a copy link icon to headings for easy copying, bookmarking, sharing, and navigation within the content.
+ * Version: 1.3
  * Author: Jose Varghese
  * Requires at least: 5.0
  * Requires PHP: 7.0
@@ -39,6 +39,8 @@ function clth_enqueue_assets() {
         'headings' => get_option('clth_heading_levels', ['h2', 'h3', 'h4', 'h5', 'h6']),
         'showIconOnMobile' => get_option('clth_show_icon_on_mobile', true),
         'enableTooltip' => get_option('clth_enable_tooltip', true),
+        'copyText' => get_option('clth_copy_text', 'Copy Link to Heading'),
+        'copiedText' => get_option('clth_copied_text', 'Copied'),
     ]);
 }
 add_action('wp_enqueue_scripts', 'clth_enqueue_assets');
@@ -49,7 +51,7 @@ function clth_should_load() {
     $excluded_ids = get_option('clth_excluded_ids', []);
     $enabled_cpts = get_option('clth_enable_for_cpt', []);
     $show_for_posts = get_option('clth_enable_for_posts', true);
-    $show_for_pages = get_option('clth_enable_for_pages', true);
+    $show_for_pages = get_option('clth_enable_for_pages', false);
 
     if (!is_array($excluded_ids)) {
         $excluded_ids = [];
@@ -95,7 +97,7 @@ add_action('admin_menu', 'clth_add_settings_page');
 function clth_render_settings_page() {
     ?>
     <div class="wrap">
-        <h1><?php esc_html_e('Copy Link to Heading Settings', 'copy-link-to-heading'); ?></h1>
+        <h1><?php esc_html_e('Copy Link to Heading Settings', 'copy-link-to-heading'); ?> <sup><?php echo esc_html(clth_get_plugin_version()); ?></sup></h1>
         <form method="post" action="options.php">
             <?php
             settings_fields('clth_options_group');
@@ -128,7 +130,7 @@ function clth_render_settings_page() {
                     <th scope="row"><?php esc_html_e('Show link icons on the following content types:', 'copy-link-to-heading'); ?></th>
                     <td>
                         <input type="checkbox" name="clth_enable_for_posts" value="1" <?php checked(get_option('clth_enable_for_posts', true), 1); ?> /> <?php esc_html_e('Posts', 'copy-link-to-heading'); ?><br />
-                        <input type="checkbox" name="clth_enable_for_pages" value="1" <?php checked(get_option('clth_enable_for_pages', true), 1); ?> /> <?php esc_html_e('Pages', 'copy-link-to-heading'); ?><br />
+                        <input type="checkbox" name="clth_enable_for_pages" value="1" <?php checked(get_option('clth_enable_for_pages', false), 1); ?> /> <?php esc_html_e('Pages', 'copy-link-to-heading'); ?><br />
                         <?php
                         $args = ['public' => true, '_builtin' => false];
                         $post_types = get_post_types($args, 'objects');
@@ -166,15 +168,41 @@ function clth_render_settings_page() {
                 <tr valign="top">
                     <th scope="row"><?php esc_html_e('Enable Tooltip:', 'copy-link-to-heading'); ?></th>
                     <td>
-                        <input type="checkbox" name="clth_enable_tooltip" value="1" <?php checked(get_option('clth_enable_tooltip', true), 1); ?> />
+                        <input type="checkbox" name="clth_enable_tooltip" id="clth_enable_tooltip" value="1" <?php checked(get_option('clth_enable_tooltip', true), 1); ?> />
                         <label for="clth_enable_tooltip"><?php esc_html_e('Enable tooltips when hovering over the copy icon.', 'copy-link-to-heading'); ?></label>
                         <p class="description"><?php esc_html_e('If disabled, an alert will show instead of the tooltip.', 'copy-link-to-heading'); ?></p>
+                    </td>
+                </tr>
+                <tr valign="top" class="tooltip-text-options" style="<?php echo get_option('clth_enable_tooltip', true) ? '' : 'display: none;'; ?>">
+                    <th scope="row"><?php esc_html_e('Text for "Copy Link to Heading":', 'copy-link-to-heading'); ?></th>
+                    <td>
+                        <input type="text" name="clth_copy_text" value="<?php echo esc_attr(get_option('clth_copy_text', 'Copy Link to Heading')); ?>" class="regular-text" />
+                        <p class="description"><?php esc_html_e('Text to display when hovering over the icon before the link is copied.', 'copy-link-to-heading'); ?></p>
+                    </td>
+                </tr>
+                <tr valign="top" class="tooltip-text-options" style="<?php echo get_option('clth_enable_tooltip', true) ? '' : 'display: none;'; ?>">
+                    <th scope="row"><?php esc_html_e('Text for "Copied":', 'copy-link-to-heading'); ?></th>
+                    <td>
+                        <input type="text" name="clth_copied_text" value="<?php echo esc_attr(get_option('clth_copied_text', 'Copied')); ?>" class="regular-text" />
+                        <p class="description"><?php esc_html_e('Text to display when the link is copied.', 'copy-link-to-heading'); ?></p>
                     </td>
                 </tr>
             </table>
             <?php submit_button(); ?>
         </form>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tooltipCheckbox = document.getElementById('clth_enable_tooltip');
+            const tooltipTextOptions = document.querySelectorAll('.tooltip-text-options');
+
+            tooltipCheckbox.addEventListener('change', function () {
+                tooltipTextOptions.forEach(option => {
+                    option.style.display = this.checked ? '' : 'none';
+                });
+            });
+        });
+    </script>
     <?php
 }
 
@@ -195,10 +223,11 @@ function clth_set_activation_notice() {
 }
 register_activation_hook(__FILE__, 'clth_set_activation_notice');
 
-// Add settings link on plugins page
+// Add settings and donate links on plugins page
 function clth_add_plugin_action_links($links) {
     $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
-    array_unshift($links, $settings_link);
+    $donate_link = '<a href="https://superwebshare.com/donate" target="_blank">' . esc_html__('Donate', 'copy-link-to-heading') . '</a>';
+    array_unshift($links, $settings_link, $donate_link);
     return $links;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_action_links');
@@ -207,11 +236,13 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_
 function clth_register_settings() {
     register_setting('clth_options_group', 'clth_heading_levels', ['sanitize_callback' => 'clth_sanitize_headings', 'default' => ['h2', 'h3', 'h4', 'h5', 'h6']]);
     register_setting('clth_options_group', 'clth_enable_for_posts', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
-    register_setting('clth_options_group', 'clth_enable_for_pages', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
+    register_setting('clth_options_group', 'clth_enable_for_pages', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => false]);
     register_setting('clth_options_group', 'clth_enable_for_cpt', ['sanitize_callback' => 'clth_sanitize_array', 'default' => []]);
     register_setting('clth_options_group', 'clth_excluded_ids', ['sanitize_callback' => 'clth_sanitize_ids', 'default' => []]);
     register_setting('clth_options_group', 'clth_show_icon_on_mobile', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
     register_setting('clth_options_group', 'clth_enable_tooltip', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
+    register_setting('clth_options_group', 'clth_copy_text', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Copy Link to Heading']);
+    register_setting('clth_options_group', 'clth_copied_text', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Copied']);
 }
 add_action('admin_init', 'clth_register_settings');
 
@@ -245,7 +276,7 @@ function clth_admin_footer_text($text) {
     global $pagenow;
 
     // Check if we're on the plugin's settings page
-    if ($pagenow === 'options-general.php' && isset($_GET['page']) && $_GET['page'] === 'clth-settings') {
+    if ($pagenow === 'options-general.php' && isset($_GET['page']) && $_GET['page'] === 'clth-settings') { // phpcs:ignore
         $custom_text = __('Thank you for using the Copy Link to Heading plugin :) If you like it, please leave <a href="https://wordpress.org/support/plugin/copy-link-to-heading/reviews/?filter=5#new-post" target="_blank">a ★★★★★ rating</a> to support us on WordPress.org to help us spread the word to the community. If you love to donate, you can provide it via <a href="https://superwebshare.com/donate" target="_blank">here</a>. Thanks a lot!', 'copy-link-to-heading');
         return $custom_text;
     }
@@ -270,4 +301,6 @@ function clth_uninstall_cleanup() {
     delete_option('clth_excluded_ids');
     delete_option('clth_show_icon_on_mobile');
     delete_option('clth_enable_tooltip');
+    delete_option('clth_copy_text');
+    delete_option('clth_copied_text');
 }

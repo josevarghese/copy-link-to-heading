@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const headings = clthData.headings;
     const iconUrl = clthData.iconUrl;
     const showIconOnMobile = clthData.showIconOnMobile;
-    const enableTooltip = clthData.enableTooltip === '1'; // Check if tooltip is enabled
+    const enableTooltip = clthData.enableTooltip; 
+    const copyText = clthData.copyText || 'Copy Link to Heading';
+    const copiedText = clthData.copiedText || 'Copied';
     const contentSelector = '.entry-content, .post-content, .page-content';
 
     // Add or remove class on the body based on the mobile icon setting
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Create tooltip element
                         const tooltip = document.createElement('span');
                         tooltip.classList.add('clth-tooltip');
-                        tooltip.textContent = 'Copy link to heading';
+                        tooltip.textContent = copyText;
 
                         // Append tooltip to the icon
                         icon.appendChild(tooltip);
@@ -46,15 +48,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (enableTooltip) {
                                 // Change tooltip text to "Copied"
                                 const tooltip = icon.querySelector('.clth-tooltip');
-                                tooltip.textContent = 'Copied';
+                                tooltip.textContent = copiedText;
 
                                 // Revert back to the original text after 2 seconds
                                 setTimeout(() => {
-                                    tooltip.textContent = 'Copy Link to Heading';
+                                    tooltip.textContent = copyText;
                                 }, 2000);
                             } else {
                                 // Show alert if tooltip is disabled
-                                alert(`Copied link: ${url}`);
+                                alert(`${clthData.copiedText || 'Copied'}: ${url}`);
                             }
                         });
                     });
