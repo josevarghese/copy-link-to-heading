@@ -97,7 +97,7 @@ add_action('admin_menu', 'clth_add_settings_page');
 function clth_render_settings_page() {
     ?>
     <div class="wrap">
-        <h1><?php esc_html_e('Copy Link to Heading Settings', 'copy-link-to-heading'); ?></h1>
+        <h1><?php esc_html_e('Copy Link to Heading Settings', 'copy-link-to-heading'); ?> <sup><?php echo esc_html(clth_get_plugin_version()); ?></sup></h1>
         <form method="post" action="options.php">
             <?php
             settings_fields('clth_options_group');
