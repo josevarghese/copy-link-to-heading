@@ -51,7 +51,7 @@ function clth_should_load() {
     $excluded_ids = get_option('clth_excluded_ids', []);
     $enabled_cpts = get_option('clth_enable_for_cpt', []);
     $show_for_posts = get_option('clth_enable_for_posts', true);
-    $show_for_pages = get_option('clth_enable_for_pages', true);
+    $show_for_pages = get_option('clth_enable_for_pages', false);
 
     if (!is_array($excluded_ids)) {
         $excluded_ids = [];
@@ -130,7 +130,7 @@ function clth_render_settings_page() {
                     <th scope="row"><?php esc_html_e('Show link icons on the following content types:', 'copy-link-to-heading'); ?></th>
                     <td>
                         <input type="checkbox" name="clth_enable_for_posts" value="1" <?php checked(get_option('clth_enable_for_posts', true), 1); ?> /> <?php esc_html_e('Posts', 'copy-link-to-heading'); ?><br />
-                        <input type="checkbox" name="clth_enable_for_pages" value="1" <?php checked(get_option('clth_enable_for_pages', true), 1); ?> /> <?php esc_html_e('Pages', 'copy-link-to-heading'); ?><br />
+                        <input type="checkbox" name="clth_enable_for_pages" value="1" <?php checked(get_option('clth_enable_for_pages', false), 1); ?> /> <?php esc_html_e('Pages', 'copy-link-to-heading'); ?><br />
                         <?php
                         $args = ['public' => true, '_builtin' => false];
                         $post_types = get_post_types($args, 'objects');
@@ -236,7 +236,7 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_
 function clth_register_settings() {
     register_setting('clth_options_group', 'clth_heading_levels', ['sanitize_callback' => 'clth_sanitize_headings', 'default' => ['h2', 'h3', 'h4', 'h5', 'h6']]);
     register_setting('clth_options_group', 'clth_enable_for_posts', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
-    register_setting('clth_options_group', 'clth_enable_for_pages', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
+    register_setting('clth_options_group', 'clth_enable_for_pages', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => false]);
     register_setting('clth_options_group', 'clth_enable_for_cpt', ['sanitize_callback' => 'clth_sanitize_array', 'default' => []]);
     register_setting('clth_options_group', 'clth_excluded_ids', ['sanitize_callback' => 'clth_sanitize_ids', 'default' => []]);
     register_setting('clth_options_group', 'clth_show_icon_on_mobile', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
