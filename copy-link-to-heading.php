@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Copy Link to Heading
  * Description: Adds a copy link icon to headings for easy copying, bookmarking, sharing, and navigation within the content.
- * Version: 1.3
+ * Version: 1.4
  * Author: Jose Varghese
  * Requires at least: 5.0
  * Requires PHP: 7.0
@@ -15,6 +15,15 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+
+// Remove admin notices on the plugin settings page
+function clth_remove_admin_notices() {
+    $screen = get_current_screen();
+    if ($screen && $screen->id === 'settings_page_clth-settings') {
+        remove_all_actions('admin_notices');
+    }
+}
+add_action('admin_head', 'clth_remove_admin_notices');
 
 // Enqueue CSS and JS
 function clth_enqueue_assets() {
@@ -32,6 +41,9 @@ function clth_enqueue_assets() {
     // Register JS
     wp_register_script('clth-script', $plugin_url . 'js/clth-script.js', [], $version, true);
     wp_enqueue_script('clth-script');
+
+    // Add defer attribute to script
+    wp_script_add_data('clth-script', 'defer', true);
 
     // Pass data to JS
     wp_localize_script('clth-script', 'clthData', [

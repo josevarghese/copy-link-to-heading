@@ -16,12 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const contentElements = document.querySelectorAll(contentSelector);
 
+    function sanitizeSlug(text) {
+        return text
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')  // Replace non-alphanumeric characters with hyphen
+            .replace(/^-+|-+$/g, '');
+    }
+
     contentElements.forEach(function (content) {
         headings.forEach(function (level) {
             const elements = content.querySelectorAll(level);
             elements.forEach(function (heading) {
                 if (!heading.id) {
-                    const id = heading.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                    const id = sanitizeSlug(heading.innerText.trim());
                     heading.id = id;
                 }
 
@@ -56,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }, 2000);
                             } else {
                                 // Show alert if tooltip is disabled
-                                alert(`${clthData.copiedText || 'Copied'}: ${url}`);
+                                alert(`${copiedText}: ${url}`);
                             }
                         });
                     });
