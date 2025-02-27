@@ -2,17 +2,17 @@
 Contributors: josevarghese
 Tags: headings, copy link, content navigation, deep linking, anchor links
 Requires at least: 5.0
-Tested up to: 6.7.1
+Tested up to: 6.7.2
 Requires PHP: 7.0
 Stable tag: 1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds a copy link icon to headings for easy copying anchor links, bookmarking, sharing, and navigation within the content.
+Adds a copy link icon to headings for easy copying anchor links, that helps to bookmarking, sharing, and navigation within the content.
 
 == Description ==
 
-HHave you ever wanted to quickly copy a link to a specific heading section of your content for bookmarking, sharing with friends or colleagues, or jumping straight to a heading without scrolling through the entire page? Then, “Copy Link to Heading” plugin makes it effortless!
+Have you ever wanted to quickly copy a link to a specific heading section of your content for bookmarking, sharing with friends or colleagues, or jumping straight to a heading without scrolling through the entire page? Then, “Copy Link to Heading” plugin makes it effortless!
 
 The Copy Link to Heading plugin automatically adds a small, unobtrusive link icon next to the headings in your posts, pages, or custom post types. With just one click, users can copy a direct anchor link to the heading section for:
 
@@ -25,7 +25,6 @@ The Copy Link to Heading plugin automatically adds a small, unobtrusive link ico
 The plugin is designed to be lightweight and user-friendly. It is perfect for blogs, documentation sites, WooCommerce stores, and any site with long-form content.
 
 **Key Features of Copy Link to Heading:**
-
 - Copy Link to Heading plugin, adds a link icon next to the selected heading levels (H2, H3, etc.) based on your preferences selected within the settings page.
 - We support posts, pages, and custom content post types.
 - Easily customizable heading levels to display the link icon.
@@ -37,7 +36,6 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 - Option to add a tooltip for the link icon or to choose the browser alert for copying the link of the heading.
 
 == How does the anchor links are generated? ==
-
 - When the page loads, the plugin automatically generates anchor links for headings on the frontend. No changes are required in the WordPress editor or post content.
 - If a heading already has an anchor link, the plugin uses the existing anchor link URL for the “copy link” functionality.
 - Even if the heading text is modified later, the plugin dynamically generates the anchor link when the page is loaded on the front end based on the heading text. That means any changes made in the editor will not cause issues with link functionality.
@@ -46,7 +44,6 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 - Our plugin will do everything on the front end out of the box without any hassle.
 
 **Use Cases with the Page Jumps?:**
-
 - The **copy links to specific headings** using a heading URL generator created by us, which makes it easy to share with others or reference in emails or social media. And when clicked via the link, the page will jump to the specific heading.
 - You can **bookmark the heading sections of long articles or documentation for easy navigation**. Once you click the link, the heading will open using the anchor links.
 - **Enable deep linking to improve user experience** on content-heavy websites.
@@ -55,7 +52,6 @@ The plugin is designed to be lightweight and user-friendly. It is perfect for bl
 Whether managing a blog, a technical documentation site, or a WooCommerce store, this plugin ensures your audience can easily navigate and share content.
 
 == Installation ==
-
 1. Download and install the plugin from the WordPress Plugin Directory or upload the `copy-link-to-heading` folder to your `/wp-content/plugins/` directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Go to "Settings" -> "Copy Link to Heading" to configure the plugin.
@@ -105,12 +101,18 @@ You can report the bugs and request new features you need to see at our [GitHub 
 
 == Changelog ==
 
+= 1.4 =
+Released on 28 February 2025
+Enhancements:
+- Improved slug sanitization to prevent trailing hyphens in anchor links when the alphanumeric characters are there in the heading
+- Removed admin notices from the plugin settings page to avoid interference from other plugins.
+
 = 1.3 =
 Released on 26 January 2025
 New features:
-Added settings to customize the tooltip text based on your preferences.
-By default, the copy link feature is now enabled for posts, while pages are unselected. You can enable it for pages based on your preference.
-Enhanced the settings page for a better user experience.
+- Added settings to customize the tooltip text based on your preferences.
+- By default, the copy link feature is now enabled for posts, while pages are unselected. You can enable it for pages based on your preference.
+- Enhanced the settings page for a better user experience.
 
 = 1.2 =
 Released on 22 January 2025
