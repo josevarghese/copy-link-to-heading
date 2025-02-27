@@ -110,9 +110,9 @@ Enhancements:
 = 1.3 =
 Released on 26 January 2025
 New features:
-- AAdded settings to customize the tooltip text based on your preferences.
-- ABy default, the copy link feature is now enabled for posts, while pages are unselected. You can enable it for pages based on your preference.
-- AEnhanced the settings page for a better user experience.
+- Added settings to customize the tooltip text based on your preferences.
+- By default, the copy link feature is now enabled for posts, while pages are unselected. You can enable it for pages based on your preference.
+- Enhanced the settings page for a better user experience.
 
 = 1.2 =
 Released on 22 January 2025
