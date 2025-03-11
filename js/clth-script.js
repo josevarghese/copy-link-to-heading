@@ -51,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     heading.appendChild(icon);
 
                     icon.addEventListener('click', function () {
-                        const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
+                        const baseUrl = window.location.href.split('#')[0]; // Preserve full URL
+                        const url = `${baseUrl}#${heading.id}`; // Append the heading ID
+
                         navigator.clipboard.writeText(url).then(() => {
                             if (enableTooltip) {
                                 // Change tooltip text to "Copied"
