@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function sanitizeSlug(text) {
         return text
             .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')  // Replace non-alphanumeric characters with hyphen
-            .replace(/^-+|-+$/g, '');
+            .replace(/[^a-z0-9 ]+/g, '')  // Remove special characters but keep spaces
+            .trim()
+            .replace(/\s+/g, '-');       // Replace spaces with hyphens
     }
 
     contentElements.forEach(function (content) {
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Create tooltip element
                         const tooltip = document.createElement('span');
                         tooltip.classList.add('clth-tooltip');
-                        tooltip.textContent = copyText;
+                        tooltip.textContent = copyText; // Keep spaces intact
 
                         // Append tooltip to the icon
                         icon.appendChild(tooltip);
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (enableTooltip) {
                                 // Change tooltip text to "Copied"
                                 const tooltip = icon.querySelector('.clth-tooltip');
-                                tooltip.textContent = copiedText;
+                                tooltip.textContent = copiedText; // Keep spaces intact
 
                                 // Revert back to the original text after 2 seconds
                                 setTimeout(() => {
