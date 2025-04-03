@@ -111,7 +111,7 @@ add_action( 'admin_menu', 'clth_add_settings_page' );
 function clth_render_settings_page() {
     // Verify user capabilities.
     if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to access this page.', 'copy-link-to-heading' ) );
+        wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'copy-link-to-heading' ) );
     }
     ?>
     <div class="wrap">
@@ -373,13 +373,13 @@ function clth_sanitize_ids( $input ) {
     return array_filter( array_map( 'absint', (array) $input ) );
 }
 
-// Admin footer text only on the settings page
+// Admin footer text only on the settings page, with proper output escaping
 function clth_admin_footer_text( $text ) {
     global $pagenow;
 
     // Check if we're on the plugin's settings page
     if ( $pagenow === 'options-general.php' && isset( $_GET['page'] ) && $_GET['page'] === 'clth-settings' ) {
-        $custom_text = __( 'Thank you for using the Copy Link to Heading plugin :) If you like it, please leave <a href="https://wordpress.org/support/plugin/copy-link-to-heading/reviews/?filter=5#new-post" target="_blank">a ★★★★★ rating</a> to support us on WordPress.org to help us spread the word to the community. If you love to donate, you can provide it via <a href="https://superwebshare.com/donate" target="_blank">here</a>. Thanks a lot!', 'copy-link-to-heading' );
+        $custom_text = wp_kses_post( __( 'Thank you for using the Copy Link to Heading plugin :) If you like it, please leave <a href="https://wordpress.org/support/plugin/copy-link-to-heading/reviews/?filter=5#new-post" target="_blank">a ★★★★★ rating</a> to support us on WordPress.org to help us spread the word to the community. If you love to donate, you can provide it via <a href="https://superwebshare.com/donate" target="_blank">here</a>. Thanks a lot!', 'copy-link-to-heading' ) );
         return $custom_text;
     }
 
@@ -408,4 +408,3 @@ function clth_uninstall_cleanup() {
     delete_option( 'clth_icon_position' );
     delete_option( 'clth_show_icon_on_desktop' );
 }
-?>
