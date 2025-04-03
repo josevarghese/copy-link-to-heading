@@ -8,7 +8,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
-    transition: opacity 0.2s;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 /* Show icon on hover for desktop */
@@ -18,6 +19,7 @@ h4:hover .clth-copy-icon,
 h5:hover .clth-copy-icon,
 h6:hover .clth-copy-icon {
     display: inline-block;
+    opacity: 1;
 }
 
 /* Ensure the icon aligns properly when shown */
@@ -27,7 +29,9 @@ h6:hover .clth-copy-icon {
 
 /* Mobile-specific styles when "Always Show Icon on Mobile" is enabled */
 @media (max-width: 768px) {
-    body.clth-show-icon-mobile .clth-copy-icon {
+    body.clth-show-icon-mobile .clth-copy-icon,
+    .clth-always-visible {
+        opacity: 1 !important;
         display: inline-block !important;
     }
 }

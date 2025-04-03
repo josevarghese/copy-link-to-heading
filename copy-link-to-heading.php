@@ -47,12 +47,15 @@ function clth_enqueue_assets() {
 
     // Pass data to JS
     wp_localize_script('clth-script', 'clthData', [
-        'iconUrl' => $plugin_url . 'images/link-icon.png',
-        'headings' => get_option('clth_heading_levels', ['h2', 'h3', 'h4', 'h5', 'h6']),
-        'showIconOnMobile' => get_option('clth_show_icon_on_mobile', true),
-        'enableTooltip' => get_option('clth_enable_tooltip', true),
-        'copyText' => get_option('clth_copy_text', 'Copy Link to Heading'),
-        'copiedText' => get_option('clth_copied_text', 'Copied'),
+        'iconUrl'           => $plugin_url . 'images/link-icon.png',
+        'headings'          => get_option('clth_heading_levels', ['h2', 'h3', 'h4', 'h5', 'h6']),
+        'showIconOnMobile'  => get_option('clth_show_icon_on_mobile', true),
+        'enableTooltip'     => get_option('clth_enable_tooltip', true),
+        'copyText'          => get_option('clth_copy_text', 'Copy Link to Heading'),
+        'copiedText'        => get_option('clth_copied_text', 'Copied'),
+        'iconPosition'      => get_option('clth_icon_position', 'after'),
+        'iconPosition' => get_option('clth_icon_position', 'after'),
+        'showIconAlwaysDesktop' => get_option('clth_show_icon_always_desktop', false),
     ]);
 }
 add_action('wp_enqueue_scripts', 'clth_enqueue_assets');
@@ -199,6 +202,47 @@ function clth_render_settings_page() {
                         <p class="description"><?php esc_html_e('Text to display when the link is copied.', 'copy-link-to-heading'); ?></p>
                     </td>
                 </tr>
+                <tr valign="top">
+                    <th scope="row"><?php esc_html_e('Icon Position:', 'copy-link-to-heading'); ?></th>
+                    <td>
+                        <fieldset>
+                            <label>
+                                <input type="radio" name="clth_icon_position" value="after" 
+                                    <?php checked('after', get_option('clth_icon_position', 'after')); ?> />
+                                <?php esc_html_e('After the heading (default)', 'copy-link-to-heading'); ?>
+                            </label><br>
+                            <label>
+                                <input type="radio" name="clth_icon_position" value="before" 
+                                    <?php checked('before', get_option('clth_icon_position', 'after')); ?> />
+                                <?php esc_html_e('Before the heading', 'copy-link-to-heading'); ?>
+                            </label>
+                        </fieldset>
+                        <p class="description">
+                            <?php esc_html_e('Choose where the copy link icon should appear relative to your heading text.', 'copy-link-to-heading'); ?>
+                        </p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><?php esc_html_e('Position of Copy Icon:', 'copy-link-to-heading'); ?></th>
+                    <td>
+                        <label>
+                            <input type="radio" name="clth_icon_position" value="after" <?php checked(get_option('clth_icon_position', 'after'), 'after'); ?> />
+                                <?php esc_html_e('After the heading (default)', 'copy-link-to-heading'); ?>
+                            </label><br>
+                            <label>
+                                <input type="radio" name="clth_icon_position" value="before" <?php checked(get_option('clth_icon_position', 'after'), 'before'); ?> />
+                                <?php esc_html_e('Before the heading (icon always visible)', 'copy-link-to-heading'); ?>
+                            </label>
+                            <p class="description"><?php esc_html_e('Choose whether the copy icon appears before or after the heading.', 'copy-link-to-heading'); ?></p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><?php esc_html_e('Show icon on desktop without hover:', 'copy-link-to-heading'); ?></th>
+                    <td>
+                        <input type="checkbox" name="clth_show_icon_always_desktop" value="1" <?php checked(get_option('clth_show_icon_always_desktop', false), 1); ?> />
+                        <label><?php esc_html_e('Always show icon on desktop (like on mobile)', 'copy-link-to-heading'); ?></label>
+                    </td>
+                </tr>                
             </table>
             <?php submit_button(); ?>
         </form>
@@ -238,7 +282,7 @@ register_activation_hook(__FILE__, 'clth_set_activation_notice');
 // Add settings and donate links on plugins page
 function clth_add_plugin_action_links($links) {
     $settings_link = '<a href="options-general.php?page=clth-settings">' . esc_html__('Settings', 'copy-link-to-heading') . '</a>';
-    $donate_link = '<a href="https://superwebshare.com/donate" target="_blank">' . esc_html__('Donate', 'copy-link-to-heading') . '</a>';
+    $donate_link   = '<a href="https://superwebshare.com/donate" target="_blank">' . esc_html__('Donate', 'copy-link-to-heading') . '</a>';
     array_unshift($links, $settings_link, $donate_link);
     return $links;
 }
@@ -246,17 +290,64 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'clth_add_plugin_
 
 // Register settings
 function clth_register_settings() {
-    register_setting('clth_options_group', 'clth_heading_levels', ['sanitize_callback' => 'clth_sanitize_headings', 'default' => ['h2', 'h3', 'h4', 'h5', 'h6']]);
-    register_setting('clth_options_group', 'clth_enable_for_posts', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
-    register_setting('clth_options_group', 'clth_enable_for_pages', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => false]);
-    register_setting('clth_options_group', 'clth_enable_for_cpt', ['sanitize_callback' => 'clth_sanitize_array', 'default' => []]);
-    register_setting('clth_options_group', 'clth_excluded_ids', ['sanitize_callback' => 'clth_sanitize_ids', 'default' => []]);
-    register_setting('clth_options_group', 'clth_show_icon_on_mobile', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
-    register_setting('clth_options_group', 'clth_enable_tooltip', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
-    register_setting('clth_options_group', 'clth_copy_text', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Copy Link to Heading']);
-    register_setting('clth_options_group', 'clth_copied_text', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Copied']);
+    register_setting('clth_options_group', 'clth_heading_levels', [
+        'sanitize_callback' => 'clth_sanitize_headings',
+        'default'           => ['h2', 'h3', 'h4', 'h5', 'h6']
+    ]);
+    register_setting('clth_options_group', 'clth_enable_for_posts', [
+        'sanitize_callback' => 'clth_sanitize_checkbox',
+        'default'           => true
+    ]);
+    register_setting('clth_options_group', 'clth_enable_for_pages', [
+        'sanitize_callback' => 'clth_sanitize_checkbox',
+        'default'           => false
+    ]);
+    register_setting('clth_options_group', 'clth_enable_for_cpt', [
+        'sanitize_callback' => 'clth_sanitize_array',
+        'default'           => []
+    ]);
+    register_setting('clth_options_group', 'clth_excluded_ids', [
+        'sanitize_callback' => 'clth_sanitize_ids',
+        'default'           => []
+    ]);
+    register_setting('clth_options_group', 'clth_show_icon_on_mobile', [
+        'sanitize_callback' => 'clth_sanitize_checkbox',
+        'default'           => true
+    ]);
+    register_setting('clth_options_group', 'clth_enable_tooltip', [
+        'sanitize_callback' => 'clth_sanitize_checkbox',
+        'default'           => true
+    ]);
+    register_setting('clth_options_group', 'clth_copy_text', [
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => 'Copy Link to Heading'
+    ]);
+    register_setting('clth_options_group', 'clth_copied_text', [
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => 'Copied'
+    ]);
+
+    register_setting('clth_options_group', 'clth_icon_position', [
+        'sanitize_callback' => 'clth_sanitize_icon_position',
+        'default'           => 'after'
+    ]);
+
+    register_setting('clth_options_group', 'clth_icon_position', [
+        'sanitize_callback' => 'clth_sanitize_icon_position',
+        'default' => 'after'
+    ]);
+    register_setting('clth_options_group', 'clth_show_icon_always_desktop', [
+        'sanitize_callback' => 'clth_sanitize_checkbox',
+        'default' => false
+    ]);
 }
 add_action('admin_init', 'clth_register_settings');
+
+// Sanitization for icon position
+function clth_sanitize_icon_position($input) {
+    $valid = ['before', 'after'];
+    return in_array($input, $valid, true) ? $input : 'after';
+}
 
 // Sanitization callbacks
 function clth_sanitize_headings($input) {
@@ -281,6 +372,10 @@ function clth_sanitize_ids($input) {
         $input = explode(',', $input);
     }
     return array_filter(array_map('absint', (array)$input));
+}
+
+function clth_sanitize_icon_position($input) {
+    return in_array($input, ['before', 'after']) ? $input : 'after';
 }
 
 // Admin footer text only on the settings page
@@ -315,4 +410,5 @@ function clth_uninstall_cleanup() {
     delete_option('clth_enable_tooltip');
     delete_option('clth_copy_text');
     delete_option('clth_copied_text');
+    delete_option('clth_icon_position');
 }
