@@ -2,41 +2,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const headings = clthData.headings;
     const iconUrl = clthData.iconUrl;
     const showIconOnMobile = clthData.showIconOnMobile;
-    const enableTooltip = clthData.enableTooltip;
+    const showIconOnDesktop = clthData.showIconOnDesktop;
+    const enableTooltip = clthData.enableTooltip; 
     const copyText = clthData.copyText || 'Copy Link to Heading';
     const copiedText = clthData.copiedText || 'Copied';
-    const iconPosition = clthData.iconPosition || 'after'; // new
+    const iconPosition = clthData.iconPosition || 'after';
     const contentSelector = '.entry-content, .post-content, .page-content';
-    const showIconAlwaysDesktop = clthData.showIconAlwaysDesktop;
 
-    if (iconPosition === 'before') {
-        icon.style.marginRight = '0.4em';
-        heading.insertBefore(icon, heading.firstChild);
-        icon.classList.add('clth-always-visible');
-    } else {
-        heading.appendChild(icon);
-        if (showIconAlwaysDesktop) {
-        icon.classList.add('clth-always-visible');
-        }
-    }
-
-        // Add or remove class on the body based on the mobile icon setting
-
+    // Add or remove class on the body based on mobile and desktop settings
     if (showIconOnMobile) {
         document.body.classList.add('clth-show-icon-mobile');
     } else {
         document.body.classList.remove('clth-show-icon-mobile');
     }
+    if (showIconOnDesktop) {
+        document.body.classList.add('clth-show-icon-desktop');
+    } else {
+        document.body.classList.remove('clth-show-icon-desktop');
+    }
+
+    const contentElements = document.querySelectorAll(contentSelector);
 
     function sanitizeSlug(text) {
         return text
             .toLowerCase()
-            .replace(/[^a-z0-9 ]+/g, '') // Remove special chars except spaces
+            .replace(/[^a-z0-9 ]+/g, '')
             .trim()
-            .replace(/\s+/g, '-');       // Replace spaces with hyphens
+            .replace(/\s+/g, '-');
     }
-
-    const contentElements = document.querySelectorAll(contentSelector);
 
     contentElements.forEach(function (content) {
         headings.forEach(function (level) {
@@ -53,36 +46,38 @@ document.addEventListener('DOMContentLoaded', function () {
                     icon.style.backgroundImage = `url('${iconUrl}')`;
 
                     if (enableTooltip) {
-                        // Create tooltip element
                         const tooltip = document.createElement('span');
                         tooltip.classList.add('clth-tooltip');
-                        tooltip.textContent = copyText; // Keep spaces intact
-                        // Append tooltip to the icon
+                        tooltip.textContent = copyText;
                         icon.appendChild(tooltip);
                     }
 
-                    // Insert icon before or after the heading content
                     if (iconPosition === 'before') {
+                        // Insert icon before the heading's first child and add a small right margin
                         heading.insertBefore(icon, heading.firstChild);
+                        icon.style.marginRight = '8px';
+                        // Force icon to display by default
+                        icon.style.display = 'inline-block';
                     } else {
+                        // Default: insert icon after the heading content
                         heading.appendChild(icon);
+                        // For 'after' position, if desktop option is enabled then force display
+                        if (showIconOnDesktop) {
+                            icon.style.display = 'inline-block';
+                        }
                     }
 
                     icon.addEventListener('click', function () {
-                        const baseUrl = window.location.href.split('#')[0]; // Preserve full URL
-                        const url = `${baseUrl}#${heading.id}`; // Append the heading ID
-
+                        const baseUrl = window.location.href.split('#')[0];
+                        const url = `${baseUrl}#${heading.id}`;
                         navigator.clipboard.writeText(url).then(() => {
                             if (enableTooltip) {
-                                // Change tooltip text to "Copied"
                                 const tooltip = icon.querySelector('.clth-tooltip');
-                                tooltip.textContent = copiedText; // Keep spaces intact
-                                // Revert back to the original text after 2 seconds
+                                tooltip.textContent = copiedText;
                                 setTimeout(() => {
                                     tooltip.textContent = copyText;
                                 }, 2000);
                             } else {
-                                // Show alert if tooltip is disabled
                                 alert(`${copiedText}: ${url}`);
                             }
                         });
