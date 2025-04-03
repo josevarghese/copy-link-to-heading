@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Copy Link to Heading
  * Description: Adds a copy link icon to headings for easy copying, bookmarking, sharing, and navigation within the content.
- * Version: 1.7
+ * Version: 1.5
  * Author: Jose Varghese
  * Requires at least: 5.0
  * Requires PHP: 7.0
