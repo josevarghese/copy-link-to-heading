@@ -279,7 +279,6 @@ function clth_register_settings() {
     register_setting('clth_options_group', 'clth_enable_tooltip', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => true]);
     register_setting('clth_options_group', 'clth_copy_text', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Copy Link to Heading']);
     register_setting('clth_options_group', 'clth_copied_text', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'Copied']);
-    // New settings for icon position and desktop display
     register_setting('clth_options_group', 'clth_icon_position', ['sanitize_callback' => 'sanitize_text_field', 'default' => 'after']);
     register_setting('clth_options_group', 'clth_show_icon_on_desktop', ['sanitize_callback' => 'clth_sanitize_checkbox', 'default' => false]);
 }
