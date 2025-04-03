@@ -11,7 +11,7 @@
     transition: opacity 0.2s;
 }
 
-/* Show icon on hover for desktop */
+/* Show icon on hover for desktop (only if not forced to show) */
 h2:hover .clth-copy-icon,
 h3:hover .clth-copy-icon,
 h4:hover .clth-copy-icon,
@@ -30,6 +30,11 @@ h6:hover .clth-copy-icon {
     body.clth-show-icon-mobile .clth-copy-icon {
         display: inline-block !important;
     }
+}
+
+/* Desktop always show icon */
+body.clth-show-icon-desktop .clth-copy-icon {
+    display: inline-block !important;
 }
 
 /* Tooltip container */
