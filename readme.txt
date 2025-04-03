@@ -1,4 +1,4 @@
-=== Copy Link to Heading ===
+=== Copy Link to Heading - Easily add Anchor links for Headings ===
 Contributors: josevarghese
 Tags: headings, copy link, content navigation, deep linking, anchor links
 Requires at least: 5.0
@@ -100,6 +100,14 @@ You can report the bugs and request new features you need to see at our [GitHub 
 2. **Settings Page:** Configure which heading levels and content types should display the link icon.
 
 == Changelog ==
+
+= 1.5 =
+Released on 4 April 2025
+New features:
+- Icon position option: We have added a new setting that allows users to choose whether the copy link icon appears before or after the heading. 
+If "Before Heading" is selected, the icon is inserted at the beginning of the heading with a small margin to separate it from the heading text.
+- Desktop Icon display option: Introduced a new setting to control whether the icon should be defaulted on desktop devices. 
+By default, the desktop icon continues to appear when hovered, but users can opt to always show it.
 
 = 1.4 =
 Released on 28 February 2025
